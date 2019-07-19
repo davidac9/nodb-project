@@ -28,6 +28,9 @@ let id = 4
 
 module.exports = {
     getRecipes(req, res) {
+        if(req) {
+            res.status(200).send(recipeList.name === req)
+        }
         res.status(200).send(recipeList)
     },
     createRecipe(req, res) {
@@ -46,10 +49,18 @@ module.exports = {
     editRecipe(req, res) {
         const {id} = req.params
         const {name} =req.body
+        const {ingredient1} = req.body
+        const {ingredient2} = req.body
+        const {ingredient3} = req.body
+        const {img} = req.body
         const index = recipeList.findIndex(recipe => (
             recipe.id === +id
         ))
         recipeList[index].name = name
+        recipeList[index].ingredient1 = ingredient1
+        recipeList[index].ingredient2 = ingredient2
+        recipeList[index].ingredient3 = ingredient3
+        recipeList[index].img = img
         res.status(200).send(recipeList)
     }
 }

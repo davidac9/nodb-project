@@ -18,6 +18,7 @@ export default class List extends Component {
                         id={el.id}
                         data={el}
                         deleteFn={this.props.deleteFn}
+                        editFn = {this.props.editFn}
                         />
                     ))}
                 </div>

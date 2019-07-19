@@ -17,6 +17,7 @@ class App extends Component {
       newImg: ""
     }
     this.deleteRecipe = this.deleteRecipe.bind(this)
+    this.editRecipe = this.editRecipe.bind(this)
 
   }
 
@@ -58,6 +59,20 @@ class App extends Component {
   
   deleteRecipe(id) {
     axios.delete(`/api/recipes/${id}`).then(res => {
+      this.setState({recipeArr: res.data})
+    })
+  }
+
+  editRecipe(id, body) {
+    // const body = {
+    //   name: this.state.name,
+    //   ingredient1: this.state.newIngredient1,
+    //   ingredient2: this.state.newIngredient2,
+    //   ingredient3: this.state.newIngredient3,
+    //   img: this.state.newImg
+    // }
+    // not so sure about line 67-73 maybe it'll work?
+    axios.put(`/api/recipes/${id}`, body).then(res => {
       this.setState({recipeArr: res.data})
     })
   }
@@ -110,6 +125,7 @@ class App extends Component {
         <List 
         recipeArr={this.state.recipeArr}
         deleteFn={this.deleteRecipe}
+        editFn={this.editRecipe}
         />
       </div>
             
