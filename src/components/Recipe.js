@@ -22,6 +22,11 @@ export default class Recipe extends Component {
                 <span>2. {this.props.data.ingredient2} </span>
                 <span>3. {this.props.data.ingredient3} </span>
                 </div>
+                <div>
+                    <button onClick={() => this.props.deleteFn(this.props.id)}>
+                        Remove
+                    </button>
+                </div>
 
             </div>
         )

@@ -31,9 +31,25 @@ module.exports = {
         res.status(200).send(recipeList)
     },
     createRecipe(req, res) {
-        console.log(req.body)
         recipeList.push({...req.body, id})
         id++
+        res.status(200).send(recipeList)
+    },
+    deleteRecipe(req, res) {
+        const {id} = req.params
+        const index = recipeList.findIndex(recipe => (
+            recipe.id === +id
+        ))
+        recipeList.splice(index, 1)
+        res.status(200).send(recipeList)
+    },
+    editRecipe(req, res) {
+        const {id} = req.params
+        const {name} =req.body
+        const index = recipeList.findIndex(recipe => (
+            recipe.id === +id
+        ))
+        recipeList[index].name = name
         res.status(200).send(recipeList)
     }
 }

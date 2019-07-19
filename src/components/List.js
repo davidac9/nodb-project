@@ -15,7 +15,9 @@ export default class List extends Component {
                     {this.props.recipeArr.map(el => (
                         <Recipe 
                         key={el.id}
+                        id={el.id}
                         data={el}
+                        deleteFn={this.props.deleteFn}
                         />
                     ))}
                 </div>
