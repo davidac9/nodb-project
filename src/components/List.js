@@ -11,7 +11,7 @@ export default class List extends Component {
         return(
 
             <div>
-                <div className='recipe list'>
+                <div className='recipe-list'>
                     {this.props.recipeArr.map(el => (
                         <Recipe 
                         key={el.id}

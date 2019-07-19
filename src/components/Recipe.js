@@ -49,7 +49,7 @@ export default class Recipe extends Component {
 
     render() {
         return (
-            <div>
+            <div className="recipe-holder">
                     <h3>{this.props.data.name}</h3>
                     <img src={this.props.data.img} alt="" />
                 {this.state.editing ? (

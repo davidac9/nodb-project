@@ -28,10 +28,11 @@ let id = 4
 
 module.exports = {
     getRecipes(req, res) {
-        if(req) {
-            res.status(200).send(recipeList.name === req)
-        }
+        // if(req) {
+            // res.status(200).send(recipeList.name === req)
+        // } else {
         res.status(200).send(recipeList)
+        // }
     },
     createRecipe(req, res) {
         recipeList.push({...req.body, id})
