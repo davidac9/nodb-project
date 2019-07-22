@@ -17,10 +17,6 @@ export default class Recipe extends Component {
         this.setState({ editing: !this.state.editing})
     }
 
-    componentDidMount() {
-        // console.log('hello')
-    }
-
     handleChangeName(e) {
         this.setState({ name: e.target.value })
     }
@@ -48,11 +44,12 @@ export default class Recipe extends Component {
     }
 
     render() {
+        let { editing } = this.state
         return (
             <div className="recipe-holder">
                     <h3>{this.props.data.name}</h3>
-                    <img src={this.props.data.img} alt="" />
-                {this.state.editing ? (
+                    {/* <img src={this.props.data.img} alt="" /> */}
+                {editing ? (
                     <div>
                         <div>
                             <span>Recipie Name</span>
@@ -79,28 +76,39 @@ export default class Recipe extends Component {
                         </div>
                         <div>
                             <button onClick={() => this.toggleEdit()}> Cancel Update</button>
+                            <button onClick={() => this.props.deleteFn(this.props.id)}>
+                        Remove
+                    </button>
                         </div>
                     </div>
 
                     ) : (
 
                     <div>
+                        <div className="recipe">
+                        <img src={this.props.data.img} alt="" />
+                        <div>
                         <h4>Ingredients</h4>
-                        <div className="ingredients">
-                            <span>1. {this.props.data.ingredient1} </span>
-                            <span>2. {this.props.data.ingredient2} </span>
-                            <span>3. {this.props.data.ingredient3} </span>
+                            <div className="ingredients">
+                                <span>1. {this.props.data.ingredient1} </span>
+                                <span>2. {this.props.data.ingredient2} </span>
+                                <span>3. {this.props.data.ingredient3} </span>
+                            </div>
+                            <div className="buttons">
+                                <div>
+                                    <button onClick={() => this.toggleEdit()}>Update</button>
+                                </div>
+                                <div><button onClick={() => this.props.deleteFn(this.props.id)}>
+                                Remove
+                                </button></div>
+                            </div>
                         </div>
-                        <button onClick={() => this.toggleEdit()}>Update</button>
+                        </div>
                     </div>
                     
                 )}
-                <div>
                     
-                    <button onClick={() => this.props.deleteFn(this.props.id)}>
-                        Remove
-                    </button>
-                </div>
+                    
 
             </div>
         )

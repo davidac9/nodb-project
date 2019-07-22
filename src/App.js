@@ -64,34 +64,30 @@ class App extends Component {
   }
 
   editRecipe(id, body) {
-    // const body = {
-    //   name: this.state.name,
-    //   ingredient1: this.state.newIngredient1,
-    //   ingredient2: this.state.newIngredient2,
-    //   ingredient3: this.state.newIngredient3,
-    //   img: this.state.newImg
-    // }
-    // not so sure about line 67-73 maybe it'll work?
     axios.put(`/api/recipes/${id}`, body).then(res => {
       this.setState({recipeArr: res.data})
     })
+    .catch( () => console.log('pies not found'))
   }
 
   componentDidMount() {
     axios.get('./api/recipes').then(res => {
       this.setState({recipeArr: res.data})
-    })
+        })
+        .catch( () => console.log('pies not found'))
   }
   render() {
 
     return (
       <div className="App">
         <Header/>
-        <div>
+        <div className="New">
 
-          <button onClick={() => this.toggleCreate() }>New Recipie</button>
+          <div >
+            <button onClick={() => this.toggleCreate() }>New Recipie</button>
+          </div>
           {this.state.creating ? (
-            <div>
+            <div className="New">
               <div>
                 <span>Recipie Name</span>
                 <input type="text" onChange={e => this.handleChangeName(e)} />
@@ -127,6 +123,9 @@ class App extends Component {
         deleteFn={this.deleteRecipe}
         editFn={this.editRecipe}
         />
+        <footer>
+          <Header/>
+        </footer>
       </div>
             
           

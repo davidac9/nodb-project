@@ -3,9 +3,7 @@ import Recipe from './Recipe'
 
 export default class List extends Component {
 
-    componentDidMount() {
-        console.log(this.props.recipeArr)
-    }
+
 
     render() {
         return(
