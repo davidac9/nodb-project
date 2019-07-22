@@ -2,8 +2,8 @@ import React from 'react'
 
 export default function Header() {
     return(
-        <header>
+        <div className="header">
             <h1>RECIPIES!</h1>
-        </header>
+        </div>
     )
 }

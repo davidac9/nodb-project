@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import './App.css';
 import Header from './components/Header'
 import List from './components/List'
+import Count from './components/Count'
 import axios from 'axios'
 
 class App extends Component {
@@ -60,7 +61,7 @@ class App extends Component {
   deleteRecipe(id) {
     axios.delete(`/api/recipes/${id}`).then(res => {
       this.setState({recipeArr: res.data})
-    })
+    }).catch( () => console.log('pies not found'))
   }
 
   editRecipe(id, body) {
@@ -71,13 +72,14 @@ class App extends Component {
   }
 
   componentDidMount() {
+    console.log(this.state.recipeArr.length)
     axios.get('./api/recipes').then(res => {
       this.setState({recipeArr: res.data})
         })
         .catch( () => console.log('pies not found'))
   }
   render() {
-
+    let { creating } = this.state
     return (
       <div className="App">
         <Header/>
@@ -86,7 +88,7 @@ class App extends Component {
           <div >
             <button onClick={() => this.toggleCreate() }>New Recipie</button>
           </div>
-          {this.state.creating ? (
+          {creating ? (
             <div className="New">
               <div>
                 <span>Recipie Name</span>
@@ -124,6 +126,7 @@ class App extends Component {
         editFn={this.editRecipe}
         />
         <footer>
+          <Count/>
           <Header/>
         </footer>
       </div>
