@@ -41,9 +41,6 @@ class App extends Component {
   handleChangeImg(e) {
     this.setState({ newImg: e.target.value })
   }
-  // Still working on the create function. The input boxes are there just need to 
-// just need to make it so these input boxes add a new object to the array when i click
-// add recipe
   createRecipe() {
     const body = {
       name: this.state.name,
